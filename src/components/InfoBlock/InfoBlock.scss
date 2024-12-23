@@ -1,0 +1,103 @@
+.main__info {
+    height: 0;
+    position: relative;
+    transition: .5s;
+    overflow: hidden;
+    &.active {
+        height: 700px;
+    }
+
+    &-close {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        color: white;
+        background: rgba(20, 20, 20, 0.7);
+        border-radius: 33px;
+        padding: 20px;
+        width: 20px;
+        height: 20px;
+        z-index: 90;
+    }
+
+    &-img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        object-fit: cover;
+        height: 100%;
+        width: 60%;
+    }
+
+    &-block {
+        height: 700px;
+        position: relative;
+    }
+
+    &-content {
+        position: relative;
+        z-index: 10;
+        background: linear-gradient(90deg, #000000 40%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 67.73%);
+        height: 100%;
+
+        &-block {
+            width: 50%;
+            height: 100%;
+            padding: 114px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+            margin-left: 50px;
+        }
+    }
+
+    &-title {
+        font-family: 'Raleway';
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1.2;
+        color: #FFFFFF;
+    }
+
+    &-text {
+        font-size: 20px;
+        line-height: 1.5;
+        color: #FFFFFF;
+        @include media(1300) {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }
+    }
+
+    &-date {
+        color: rgba(255, 255, 255, 0.6);
+        display: flex;
+        gap: 5px;
+        align-items: center;
+
+        & span {
+            font-family: 'Montserrat';
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+    }
+}
+
+.marglf {
+    margin-left: 25px;
+}
+
+.mainInfo-enter-active,
+.mainInfo-leave-active {
+  transition:  0.3s linear;
+}
+
+.mainInfo-enter-from,
+.mainInfo-leave-to{
+  opacity: 0;
+  transform: scale(1.2);
+}

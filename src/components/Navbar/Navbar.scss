@@ -1,0 +1,139 @@
+.header {
+    &__nav {
+        background: rgba(20, 20, 20, 0.5);
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+
+        &.color {
+            animation: scroll 1s forwards linear;
+        }
+
+        &-logo {
+            position: relative;
+            z-index: 150;
+        }
+
+        &-btn {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            display: none;
+            z-index: 150;
+
+            @include media(800) {
+                display: block;
+            }
+
+            & span {
+                position: absolute;
+                left: 0;
+                top: 9px;
+                width: 100%;
+                height: 2px;
+                background: white;
+                transition: .3s;
+            }
+
+            &::before,
+            &::after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: white;
+                position: absolute;
+                left: 0;
+                transition: .3s;
+            }
+
+            &::before {
+                top: 0;
+            }
+
+            &::after {
+                bottom: 0;
+            }
+
+            &.active::before {
+                transform: rotate(45deg);
+                top: 9px;
+            }
+
+            &.active::after {
+                transform: rotate(-45deg);
+                bottom: 9px;
+            }
+
+            &.active span {
+                width: 0;
+            }
+        }
+
+        &-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+        }
+
+        &-list {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            @include media(800) {
+                position: fixed;
+                flex-direction: column;
+                top: 0;
+                left: 100%;
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(7px);
+                transition: .3s;
+
+                &.active {
+                    left: 0;
+                    overflow: auto;
+                }
+            }
+        }
+
+        &-link {
+            font-weight: 700;
+            line-height: 21px;
+            letter-spacing: 0%;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 34px 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+
+            &.router-link-exact-active {
+                color: rgb(255, 255, 255);
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 10px;
+                    background: rgb(20, 154, 3);
+                    border-radius: 50%;
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes scroll {
+    0% {
+        background: transparent;
+    }
+    100% {
+        background: black;
+    }
+}
