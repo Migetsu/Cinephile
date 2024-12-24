@@ -28,9 +28,9 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-import { useMovie } from '@/store/modules/movieStore.js'
+import { useMovieStore } from '@/store/modules/movieStore.js'
 import { useIndexStore } from '@/store/indexStore.js'
-let movieStore = useMovie()
+let movieStore = useMovieStore()
 let indexStore = useIndexStore()
 
 const props = defineProps({

@@ -3,7 +3,7 @@ import axios from 'axios';
 import optionsMovieById from "@/assets/scripts/options";
 import { useIndexStore } from "@/store/indexStore.js"
 
-export const useMovie = defineStore("movieStore", {
+export const useMovieStore = defineStore("movieStore", {
     state: () => ({
         path: 'https://api.themoviedb.org/3/movie/',
         movie: null,

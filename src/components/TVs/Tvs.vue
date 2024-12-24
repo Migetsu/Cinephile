@@ -5,8 +5,8 @@
             <fa icon="chevron-right" class="main__media-arrow" />
         </router-link>
         <Swiper :modules="modules" :space-between="25" navigation :breakpoints="swiperOptions.breakpoints">
-            <SwiperSlide class="main__media-item" v-for="(tv, idx) in popularTvsStore.popularTvs"
-                :key="tv.id" @click="getTv(tv, idx)">
+            <SwiperSlide class="main__media-item" v-for="(tv, idx) in popularTvsStore.popularTvs" :key="tv.id"
+                @click="getTv(tv, idx)">
                 <img v-lazy="indexStore.imageFullUrl + tv.poster_path" alt="" class="main__media-item-img">
             </SwiperSlide>
             <SwiperSlide>
@@ -14,7 +14,6 @@
             </SwiperSlide>
         </Swiper>
         <InfoBlockTv page="/tv/"/>
-        <!-- <InfoBlock page="/tv/"/> -->
     </section>
     <div class="loading" v-else>
         <div class="loading__spiner"></div>

@@ -14,7 +14,6 @@
             </SwiperSlide>
         </Swiper>
         <InfoBlockMovie page="/movie/" />
-        <!-- <InfoBlock page="/movie/" /> -->
     </section>
     <div class="loading" v-else>
         <div class="loading__spiner"></div>
@@ -24,7 +23,7 @@
 <script setup>
 import { onMounted, reactive } from 'vue'
 import { usePopularMovieStore } from '@/store/modules/popularMovieStore.js'
-import { useMovie } from '@/store/modules/movieStore.js'
+import { useMovieStore } from '@/store/modules/movieStore.js'
 import { useIndexStore } from '@/store/indexStore.js'
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -54,7 +53,7 @@ const swiperOptions = reactive({
 const modules = reactive([Navigation])
 let popularMovieStore = usePopularMovieStore()
 let indexStore = useIndexStore()
-let movieStore = useMovie()
+let movieStore = useMovieStore()
 
 const getMovie = async (movie, idx) => {
     movieStore.selectedId = movie.id
