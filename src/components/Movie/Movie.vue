@@ -8,6 +8,9 @@
             <SwiperSlide class="main__media-item" v-for="(movie, idx) in popularMovieStore.popularMovies"
                 :key="movie.id" @click="getMovie(movie, idx)">
                 <img v-lazy="indexStore.imageFullUrl + movie.poster_path" alt="" class="main__media-item-img">
+                <router-link :to="'/movie/' + movie.id" class="main__media-item-link">
+
+                </router-link>
             </SwiperSlide>
             <SwiperSlide>
                 <router-link to="/movie/" class="main__media-item">Все фильмы</router-link>

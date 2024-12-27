@@ -3,6 +3,11 @@
     position: relative;
     transition: .5s;
     overflow: hidden;
+
+    @include media(900) {
+        display: none;
+    }
+    
     &.active {
         height: 700px;
     }

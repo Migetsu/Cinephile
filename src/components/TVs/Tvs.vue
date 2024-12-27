@@ -8,6 +8,9 @@
             <SwiperSlide class="main__media-item" v-for="(tv, idx) in popularTvsStore.popularTvs" :key="tv.id"
                 @click="getTv(tv, idx)">
                 <img v-lazy="indexStore.imageFullUrl + tv.poster_path" alt="" class="main__media-item-img">
+                <router-link :to="'/tv/' + tv.id" class="main__media-item-link">
+
+                </router-link>
             </SwiperSlide>
             <SwiperSlide>
                 <router-link to="/tv/" class="main__media-item">Все сериалы</router-link>
