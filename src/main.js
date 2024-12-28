@@ -17,10 +17,8 @@ const pinia = createPinia()
 
 // Vue lazy-load
 import VueLazyload from 'vue-lazyload'
-const errorimage = ('@/assets/images/noimage.jpg')
-app.use(VueLazyload, {
-    error: errorimage,
-  })
+const errorimage = ('src/assets/images/noimage.jpg')
+app.use(VueLazyload)
 
 library.add(fas, far, fab)
 app.component('fa', FontAwesomeIcon)

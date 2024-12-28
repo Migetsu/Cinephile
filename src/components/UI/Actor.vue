@@ -10,7 +10,7 @@
 <script setup>
 import { useActorStore } from '@/store/modules/actorStore.js'
 import { useIndexStore } from '@/store/indexStore.js'
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onUnmounted, reactive } from 'vue'
 
 const actorStore = useActorStore()
 const indexStore = useIndexStore()
@@ -23,7 +23,7 @@ const props = defineProps({
 const actors = ref(null)
 
 const getCountActors = computed(() => {
-    const type = props.type === '/movie/' ? 'getMovieActorss' : 'getTvActorss'
+    const type = props.type === '/movie/' ? 'getMovieActors' : 'getTvActors'
     return actorStore[type](props.count)
 })
 
@@ -35,6 +35,11 @@ watch(
     },
     { immediate: true }
 )
+
+onUnmounted(() => {
+    const reset = props.type == '/movie/' ? 'clearActorsMovie' : 'clearActorsTv'
+    actorStore[reset]
+})
 </script>
 
 <style lang="scss">
@@ -65,7 +70,7 @@ watch(
     &-name {
         color: #ffffff;
         font-size: 16px;
-        line-height: 1,8;
+        line-height: 1, 8;
         text-align: center;
     }
 }

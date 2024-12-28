@@ -19,12 +19,18 @@ export const useActorStore = defineStore("actorStore", {
         console.log(error)
       }
     },
+    clearActorsMovie() {
+      this.actorsMovie = null
+    },
+    clearActorsTv() {
+      this.actorsTv = null
+    }
   },
   getters: {
-    getMovieActorss: (state) => (count) => {
+    getMovieActors: (state) => (count) => {
       return state.actorsMovie ? state.actorsMovie.slice(0, count) : []
     },
-    getTvActorss: (state) => (count) => {
+    getTvActors: (state) => (count) => {
       return state.actorsTv ? state.actorsTv.slice(0, count) : []
     },
   },

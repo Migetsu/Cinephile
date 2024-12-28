@@ -5,13 +5,13 @@ import { useIndexStore } from "@/store/indexStore.js"
 
 export const usePopularTvsStore = defineStore("popularTvsStore", {
     state: () => ({
-        path: 'https://api.themoviedb.org/3/trending/tv/day?language=ru-RU',
+        path: 'https://api.themoviedb.org/3/',
         popularTvs: null
     }),
     actions: {
-        async getPopularTvs() {
+        async getPopularTvs(page = 1) {
                 try {
-                    const res = await axios.get(`${this.path}`, optionsPopularTV)
+                    const res = await axios.get(`${this.path}trending/tv/day?language=ru-RU&page=${page}`, optionsPopularTV)
                     const data = res.data.results
                     this.popularTvs = data
                 } catch (error) {
