@@ -4,7 +4,7 @@
     transition: .5s;
     overflow: hidden;
 
-    @include media(900) {
+    @include media(1080) {
         display: none;
     }
     

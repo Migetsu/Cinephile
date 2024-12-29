@@ -10,10 +10,9 @@
             <p class="main__info-text">{{ tvStore.selectedTv.overview }}</p>
             <p class="main__info-date">
               <span>
-                {{ new Date(tvStore.selectedTv.first_air_date).getFullYear() }},
+                {{ new Date(tvStore.selectedTv.first_air_date).getFullYear() }}
               </span>
-              <span v-for="(genres, idx) in tvStore.selectedTv.genres" :key="genres.id">{{ genres.name }}<span
-                  v-if="idx < tvStore.selectedTv.genres.length - 1">,</span></span>
+              <span v-for="genres in tvStore.selectedTv.genres" :key="genres.id">{{ genres.name }}</span>
               <span class="marglf">{{ tvStore.selectedTv.number_of_episodes }} серий</span>
             </p>
             <Actor :type="page" :id="tvStore.selectedTv.id" :count="4" />

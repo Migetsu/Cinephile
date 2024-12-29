@@ -26,6 +26,7 @@ const props = defineProps({
   border-radius: 10px;
   background: rgb(20, 154, 3);
   color: white;
+  padding: 20px;
 
   &__icon {
     font-size: 20px;

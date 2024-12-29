@@ -40,4 +40,12 @@ export const optionsActors = {
   }
 };
 
+export const optionsSearching = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZDg3NDE4MTcxODBjMjU1OWZlYzNlMjZmNWNiNzAzMCIsIm5iZiI6MTcyMTI5MzcwNS4xODMsInN1YiI6IjY2OThkYjg5NmI1ZGFiYjVjNDMyZWMzZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2xz_1SgDX0Oc1P1VYig3TLS_clHz21Ptf_1kF6SOa4k'
+  }
+};
+
 export default optionsPopularMovie

@@ -10,11 +10,9 @@
           <p class="main__info-text">{{ movieStore.selectedMovie.overview }}</p>
           <p class="main__info-date">
             <span>
-              {{ new Date(movieStore.selectedMovie.release_date).getFullYear() }},
+              {{ new Date(movieStore.selectedMovie.release_date).getFullYear() }}
             </span>
-            <span v-for="(genres, idx) in movieStore.selectedMovie.genres" :key="genres.id">{{ genres.name }}
-              <span v-if="idx < movieStore.selectedMovie.genres.length - 1">,</span>
-            </span>
+            <span v-for="genres in movieStore.selectedMovie.genres" :key="genres.id">{{ genres.name }}</span>
             <span class="marglf">{{ movieStore.runtime }}</span>
           </p>
             <Actor :type="page" :id="movieStore.selectedMovie.id" :count="4"/>

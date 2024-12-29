@@ -48,6 +48,115 @@ body {
     }
 }
 
+// serialsId and FilmsId
+.main__contentId-media {
+    margin-top: 101px;
+    min-height: 700px;
+    position: relative;
+    padding: 0 !important;
+    overflow: hidden;
+
+    &-poster {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(15px);
+    }
+
+    &-block {
+        padding: 30px 50px;
+        position: relative;
+        min-height: 700px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        background: linear-gradient(90deg, #000 45.69%, rgba(0, 0, 0, 0.20) 60.85%, rgba(0, 0, 0, 0.00) 68%23%);
+    }
+
+    &-left {
+        width: 60%;
+
+        &-title {
+            color: #fff;
+            font-size: 50px;
+            font-weight: 700;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        &-text {
+            color: #fff;
+            font-size: 20px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-top: 30px;
+            margin-bottom: 25px;
+        }
+
+        &-genre {
+            margin-bottom: 100px;
+            color: rgba(255, 255, 255, 0.60);
+            font-size: 20px;
+            font-family: 'Montserrat';
+            line-height: 1.5;
+            display: flex;
+            gap: 5px;
+
+            & span {
+                font-weight: 700;
+            }
+        }
+    }
+
+    &-right {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 460px;
+        position: relative;
+
+        & img {
+            width: 311px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+
+    &-actors {
+        width: 100%;
+    }
+
+    &-casts {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        & .main__info-content-actors {
+            max-width: max-content;
+        }
+    }
+
+    &-title {
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+}
+// serialsId and FilmsId
+
 @keyframes loading {
     0%{
         transform: rotate(0);
