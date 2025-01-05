@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, onUnmounted } from 'vue'
 import { usePopularMovieStore } from '@/store/modules/popularMovieStore.js'
 import { useMovieStore } from '@/store/modules/movieStore.js'
 import { useIndexStore } from '@/store/indexStore.js'
@@ -67,6 +67,10 @@ const getMovie = async (movie, idx) => {
 
 onMounted(() => {
     popularMovieStore.getPopularMovie()
+})
+
+onUnmounted(() => {
+    window.scrollTo(0, 0);
 })
 </script>
 

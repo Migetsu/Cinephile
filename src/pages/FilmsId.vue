@@ -11,6 +11,11 @@
               <span class="main__contentId-media-date">{{ new Date(movie.release_date).getFullYear() }}</span>
               <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}</span>
             </p>
+            <a :href="trailer && trailer.results.length ? `https://www.youtube.com/watch?v=${trailer.results[0].key}` : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"
+              v-if="trailer" class="main__contentId-media-trailer" target="blank">
+              <fa icon="play" class="main__contentId-media-icon" />
+              <span class="main__contentId-media-span">Смотреть Трейлер</span>
+            </a>
           </div>
           <div class="main__contentId-media-right">
             <img :src="indexStore.imageFullUrl + movie.poster_path" alt="">
@@ -37,9 +42,9 @@
     <div class="main__recomendations container">
       <h3 class="main__recomendations-title">Рекомендации</h3>
       <div class="main__recomendations-list">
-        <router-link to="#" class="main__recomendations-item" v-for="(rec, idx) in countOfRecs" :key="idx">
-          <img src="@/assets/images/introMiniImg.png" alt="" class="main__recomendations-item-img">
-          <h2 class="main__recomendations-item-name">{{ movie.title }}</h2>
+        <router-link :to="page + rec.id" class="main__recomendations-item" v-for="(rec, idx) in recoms" :key="idx" @click="refreshPage(rec.id)">
+          <img v-lazy="indexStore.imageFullUrl + rec.backdrop_path" alt="" class="main__recomendations-item-img">
+          <h2 class="main__recomendations-item-name">{{ rec.title }}</h2>
         </router-link>
       </div>
     </div>
@@ -52,19 +57,45 @@
 <script setup>
 import { useIndexStore } from "@/store/indexStore.js"
 import { useMovieStore } from "@/store/modules/movieStore.js"
-import { onMounted, computed, reactive } from "vue"
-import { useRoute } from 'vue-router';
+import { useMovieRecsStore } from "@/store/modules/movieRecsStore.js"
+import { useMovieTrailerStore } from "@/store/modules/movieTrailerStore.js"
+import { onMounted, computed, reactive, ref } from "vue"
+import { useRoute, useRouter } from 'vue-router';
 
 const movieStore = useMovieStore()
 const indexStore = useIndexStore()
+const movieRecsStore = useMovieRecsStore()
+const movieTrailerStore = useMovieTrailerStore()
 const route = useRoute();
+const router = useRouter();
+const countOfRecoms = ref(4)
+const page = '/movie/'
 
 const countOfRecs = reactive([1, 2, 3, 4])
 const movie = computed(() => movieStore.movie)
+var trailer = computed(() => movieTrailerStore.trailer)
+var recoms = ref(null)
 
 onMounted(async () => {
-  await movieStore.getMovieById(route.params.id)
+  await fetchMovieData(route.params.id)
 });
+
+const fetchMovieData = async (movieId) => {
+  await movieStore.getMovieById(movieId)
+  await movieTrailerStore.getTrailer(movieStore.movie.id)
+  await movieRecsStore.getRecs(movieStore.movie.id)
+  recoms.value = getCountRecs.value
+}
+
+const getCountRecs = computed(() => {
+  return movieRecsStore.getMovieRecs(countOfRecoms.value)
+})
+
+const refreshPage = async (movieId) => {
+  await fetchMovieData(movieId)
+  router.push(`${page}${movieId}`)
+  window.scrollTo(0, 0);
+}
 </script>
 
 <style></style>

@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, onUnmounted } from 'vue'
 import { usePopularTvsStore } from '@/store/modules/popularTvsStore.js'
 import { useTvStore } from '@/store/modules/tvStore.js'
 import { useIndexStore } from '@/store/indexStore.js'
@@ -67,6 +67,10 @@ const getTv = async (tv, idx) => {
 
 onMounted(() => {
     popularTvsStore.getPopularTvs()
+})
+
+onUnmounted(() => {
+    window.scrollTo(0, 0);
 })
 </script>
 

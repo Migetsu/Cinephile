@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onUnmounted } from 'vue'
 import { useMovieStore } from '@/store/modules/movieStore.js'
 import { useIndexStore } from '@/store/indexStore.js'
 let movieStore = useMovieStore()
@@ -38,6 +38,9 @@ const props = defineProps({
   }
 })
 
+onUnmounted(() => {
+  movieStore.selectedId = movieStore.selectedMovie = null
+})
 </script>
 
 <style></style>
