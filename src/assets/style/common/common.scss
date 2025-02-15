@@ -1,3 +1,9 @@
+@mixin media($size) {
+    @media(max-width: #{$size}px) {
+        @content
+    }
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -50,6 +56,7 @@ body {
 }
 
 // serialsId and FilmsId
+
 .main__contentId-media {
     margin-top: 101px;
     min-height: 700px;
@@ -64,17 +71,21 @@ body {
         background: rgb(20, 154, 3);
         color: white;
         padding: 10px 15px;
-      }
+    }
 
-      &-icon {
+    &-icon {
         font-size: 20px;
-      }
-    
-      &-span {
+    }
+
+    &-span {
         font-size: 20px;
         line-height: 30px;
         margin-left: 10px;
-      }
+
+        @include media(500) {
+            font-size: 16px;
+        }
+    }
 
     &-poster {
         position: absolute;
@@ -94,11 +105,24 @@ body {
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
-        background: linear-gradient(90deg, #000 45.69%, rgba(0, 0, 0, 0.20) 60.85%, rgba(0, 0, 0, 0.00) 68%23%);
+        background: linear-gradient(90deg, #000 45.69%, rgba(0, 0, 0, 0.20) 60.85%, rgba(0, 0, 0, 0.00) 68% 23%);
+
+        @include media(1024) {
+            flex-wrap: nowrap;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 1150px;
+        }
     }
 
     &-left {
         width: 60%;
+
+        @include media(960) {
+            height: auto;
+            align-items: center;
+            width: 100%;
+        }
 
         &-title {
             color: #fff;
@@ -108,6 +132,13 @@ body {
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
+
+            @include media(1024) {
+                -webkit-line-clamp: none;
+                -webkit-box-orient: none;
+                font-size: 30px;
+                text-align: center;
+            }
         }
 
         &-text {
@@ -115,11 +146,17 @@ body {
             font-size: 20px;
             line-height: 1.5;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            // -webkit-line-clamp: 3;
+            // -webkit-box-orient: vertical;
             overflow: hidden;
             margin-top: 30px;
             margin-bottom: 25px;
+
+            @include media(968) {
+                text-align: center;
+                font-size: 16px;
+                line-height: 1.2;
+            }
         }
 
         &-genre {
@@ -145,11 +182,21 @@ body {
         height: 460px;
         position: relative;
 
+        @include media(1024) {
+            position: absolute;
+            top: 30px;
+            // overflow: hidden;
+        }
+
         & img {
             width: 311px;
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
+
+            @include media(500) {
+                height: 60%;
+            }
         }
     }
 
@@ -164,6 +211,12 @@ body {
 
         & .main__info-content-actors {
             max-width: max-content;
+
+            @include media(500) {
+                max-width: max-content;
+                display: grid;
+                grid-template-columns: repeat(2, 3fr);
+            }
         }
     }
 
@@ -173,6 +226,10 @@ body {
         font-size: 16px;
         line-height: 1.8;
         margin-bottom: 30px;
+
+        @include media(1024) {
+            margin-top: 20px;
+        }
     }
 }
 
@@ -182,6 +239,11 @@ body {
     padding: 50px 0;
     text-align: center;
     // gap: 15px;
+
+    @include media(400) {
+        grid-template-columns: repeat(2, 2fr);
+        gap: 15px;
+    }
 }
 
 .budgetBlock-title {
@@ -215,6 +277,10 @@ body {
         gap: 22px;
         margin-top: 50px;
         margin-bottom: 20px;
+
+        @include media(968) {
+            grid-template-columns: repeat(2, 2fr);
+        }
     }
 
     &-item {
@@ -224,6 +290,10 @@ body {
         filter: drop-shadow(0px 4px 4px #000000);
         border-radius: 10px;
         overflow: hidden;
+
+        @include media(500) {
+            min-height: 300px;
+        }
 
         &-img {
             width: 100%;
@@ -262,11 +332,5 @@ body {
 
     100% {
         transform: rotate(360deg);
-    }
-}
-
-@mixin media($size) {
-    @media(max-width: #{$size}px) {
-        @content
     }
 }

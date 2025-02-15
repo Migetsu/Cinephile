@@ -12,7 +12,7 @@
               <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}</span>
             </p>
             <a :href="trailer && trailer.results.length ? `https://www.youtube.com/watch?v=${trailer.results[0].key}` : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"
-              v-if="trailer" class="main__contentId-media-trailer" target="blank">
+              v-if="trailer" class="main__contentId-media-trailer" target="_blank">
               <fa icon="play" class="main__contentId-media-icon" />
               <span class="main__contentId-media-span">Смотреть Трейлер</span>
             </a>
@@ -30,14 +30,22 @@
       </div>
     </div>
     <div class="main__budgetBlock container">
-      <div class="main__budgetBlock-item budgetBlock-title">Бюджет</div>
-      <div class="main__budgetBlock-item budgetBlock-title">Сборы</div>
-      <div class="main__budgetBlock-item budgetBlock-title">Статус</div>
-      <div class="main__budgetBlock-item budgetBlock-title">Исходное название</div>
-      <div class="main__budgetBlock-item budgetBlock-descr">{{ `$${movie.budget.toLocaleString('de-DE')}` }}</div>
-      <div class="main__budgetBlock-item budgetBlock-descr">{{ `$${movie.revenue.toLocaleString('de-DE')}` }}</div>
-      <div class="main__budgetBlock-item budgetBlock-descr">{{ movie.status }}</div>
-      <div class="main__budgetBlock-item budgetBlock-descr">{{ movie.original_title }}</div>
+      <div class="main__budgetBlock-item">
+        <h4 class="budgetBlock-title">Бюджет</h4>
+        <p class="budgetBlock-descr">{{ `$${movie.budget.toLocaleString('de-DE')}` }}</p>
+      </div>
+      <div class="main__budgetBlock-item">
+        <h4 class="budgetBlock-title">Сборы</h4>
+        <p class="budgetBlock-descr">{{ `$${movie.revenue.toLocaleString('de-DE')}` }}</p>
+      </div>
+      <div class="main__budgetBlock-item">
+        <h4 class="budgetBlock-title">Статус</h4>
+        <p class="budgetBlock-descr">{{ movie.status }}</p>
+      </div>
+      <div class="main__budgetBlock-item">
+        <h4 class="budgetBlock-title">Исходное название</h4>
+        <p class="budgetBlock-descr">{{ movie.original_title }}</p>
+      </div>
     </div>
     <div class="main__recomendations container">
       <h3 class="main__recomendations-title">Рекомендации</h3>
@@ -46,6 +54,12 @@
           <img v-lazy="indexStore.imageFullUrl + rec.backdrop_path" alt="" class="main__recomendations-item-img">
           <h2 class="main__recomendations-item-name">{{ rec.title }}</h2>
         </router-link>
+        <!-- <Swiper :modules="modules" :space-between="25" navigation :breakpoints="swiperOptions.breakpoints">
+          <SwiperSlide :to="page + rec.id" class="main__recomendations-item" v-for="(rec, idx) in recoms" :key="idx" @click="refreshPage(rec.id)">
+          <img v-lazy="indexStore.imageFullUrl + rec.backdrop_path" alt="" class="main__recomendations-item-img">
+          <h2 class="main__recomendations-item-name">{{ rec.title }}</h2>
+        </SwiperSlide>
+        </Swiper> -->
       </div>
     </div>
   </div>
@@ -61,7 +75,32 @@ import { useMovieRecsStore } from "@/store/modules/movieRecsStore.js"
 import { useMovieTrailerStore } from "@/store/modules/movieTrailerStore.js"
 import { onMounted, computed, reactive, ref } from "vue"
 import { useRoute, useRouter } from 'vue-router';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
+const swiperOptions = reactive({
+  breakpoints: {
+    320: {
+      slidesPerView: 1
+    },
+    576: {
+      slidesPerView: 2
+    },
+    900: {
+      slidesPerView: 3
+    },
+    1200: {
+      slidesPerView: 4
+    },
+    1450: {
+      slidesPerView: 5.5
+    }
+  }
+})
+
+const modules = reactive([Navigation])
 const movieStore = useMovieStore()
 const indexStore = useIndexStore()
 const movieRecsStore = useMovieRecsStore()
